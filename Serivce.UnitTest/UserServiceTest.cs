@@ -2,14 +2,13 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using Serivce.UnitTest.Dummy;
 using UPS.Core.Entity;
 using UPS.Core.Form;
 using UPS.Core.Helper.Abstract;
 using UPS.Infrastructure;
 using Xunit;
 
-namespace Serivce.UnitTest
+namespace Service.UnitTest
 {
     [TestFixture]
     public class Tests: UPS.Infrastructure.UserService
@@ -17,18 +16,18 @@ namespace Serivce.UnitTest
         [Test]
         public  void Task_GetById_Return_OkResult()
         {
-            int id = 4225;
-            var data = Task.Run(()=>  new UserService().GetById(id)).Result;
-            Console.WriteLine(data);
-            Assert.AreEqual(data.Data.Id,id);
+            var actual = 4225;
+            var expected = Task.Run(()=>  new UserService().GetById(actual)).Result;
+            Assert.IsFalse(expected.Error);
+            Assert.AreEqual(expected.Data.Id,actual);
 
         }
         [Test]
         public void Task_GetById_Return_BadResult()
         {
-            int id = 234324;
-            var data = Task.Run(() => new UserService().GetById(id)).Result;
-            Assert.IsTrue(data.Error);
+           var actual = 234324;
+            var expected = Task.Run(() => new UserService().GetById(actual)).Result;
+            Assert.IsTrue(expected.Error);
         } 
         
         [Test]
@@ -36,8 +35,8 @@ namespace Serivce.UnitTest
         {
             var user = new User()
                 { Id = 4249, Name = "Hussien", Email = "hussin@mail.iq", Gender = "Male", Status = "Active" };
-            var data = Task.Run(() => new UserService().Remove(user)).Result;
-            Assert.IsTrue(data.Data);
+            var expected = Task.Run(() => new UserService().Remove(user)).Result;
+            Assert.IsTrue(expected.Data);
         }
 
         [Test]
@@ -45,8 +44,8 @@ namespace Serivce.UnitTest
         {
            var user = new User()
                {Id = 234324, Name = "Hussien", Email = "hussin@mail.iq", Gender = "Male", Status = "Active" };
-            var data = Task.Run(() => new UserService().Remove(user)).Result;
-            Assert.IsTrue(data.Error);
+            var expected = Task.Run(() => new UserService().Remove(user)).Result;
+            Assert.IsTrue(expected.Error);
         } 
         
 
@@ -55,8 +54,8 @@ namespace Serivce.UnitTest
         {
             var value = new CreateUserForm()
                 { Name = "Hussien", Email = "hussin@mail.iq", Gender = "Male", Status = "Active" };
-            var data = Task.Run(() => new UserService().Add(value)).Result;
-            Assert.IsTrue(data.Data);
+            var expected = Task.Run(() => new UserService().Add(value)).Result;
+            Assert.IsTrue(expected.Data);
         } 
         
         [Test]
@@ -64,8 +63,8 @@ namespace Serivce.UnitTest
         {
             var value = new CreateUserForm()
                 { Name = null, Email = "hussin", Gender = "Male", Status = "Active" };
-            var data = Task.Run(() => new UserService().Add(value)).Result;
-            Assert.IsTrue(data.Data);
+            var expected = Task.Run(() => new UserService().Add(value)).Result;
+            Assert.IsTrue(expected.Data);
         }
     }
 }

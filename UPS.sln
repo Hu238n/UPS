@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPS.Core", "UPS.Core\UPS.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPS.Infrastructure", "UPS.Infrastructure\UPS.Infrastructure.csproj", "{96E98CB2-2537-4506-AF62-4BC556EF880A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serivce.UnitTest", "Serivce.UnitTest\Serivce.UnitTest.csproj", "{22F4156B-2A07-4F28-8E46-D2076A8028A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.UnitTest", "Serivce.UnitTest\Service.UnitTest.csproj", "{22F4156B-2A07-4F28-8E46-D2076A8028A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

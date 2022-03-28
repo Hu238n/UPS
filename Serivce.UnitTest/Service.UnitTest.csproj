@@ -21,8 +21,4 @@
     <ProjectReference Include="..\UPS.Infrastructure\UPS.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dummy\" />
-  </ItemGroup>
-
 </Project>
