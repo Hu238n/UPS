@@ -39,7 +39,11 @@ namespace UPS.Infrastructure
                 if (response.StatusCode != HttpStatusCode.OK)
                     return new ServiceResponse<bool>("Bad request", true);
                 var res = JsonConvert.DeserializeObject<Root<User>>(await response.Content.ReadAsStringAsync());
-                return CheckCode(res);
+                if (res.Code == 200)
+                {
+                    return new ServiceResponse<bool>(true, null);
+                }
+                return new ServiceResponse<bool>("Bad request", true);
 
             }
             catch (Exception e)
@@ -102,7 +106,12 @@ namespace UPS.Infrastructure
                 var response = await client.PostAsync("users/", JsonContent(form));
                 if (response.StatusCode != HttpStatusCode.OK)
                     return new ServiceResponse<bool>("Bad request", true);
-                return new ServiceResponse<bool>(true, null);
+                var res = JsonConvert.DeserializeObject<Root<User>>(await response.Content.ReadAsStringAsync());
+                if (res.Code == 200)
+                {
+                    return new ServiceResponse<bool>(true,null);
+                }
+                return new ServiceResponse<bool>("Bad request", true);
 
             }
             catch (Exception e)
