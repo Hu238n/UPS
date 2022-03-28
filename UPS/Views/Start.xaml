@@ -1,0 +1,54 @@
+﻿<Window x:Class="UPS.Views.Start"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UPS.Views"
+        mc:Ignorable="d"
+        Title="Start" Height="481" Width="800">
+    <Grid Height="471" VerticalAlignment="Top">
+        <DataGrid Name="EmployeeDG" AutoGenerateColumns="False" Margin="0,101,10,108">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                x:Name="btnEdit"
+                                Width="75"
+                                Height="Auto"
+                                Margin="10"
+                                Click="EditButton_Click"
+                                Content="Edit" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                x:Name="btnDelete"
+                                Width="75"
+                                Height="Auto"
+                                Margin="10"
+                                Click="DeleteButton_Click"
+                                Content="Delete" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Name="Label" Content="" HorizontalAlignment="Left" Margin="10,306,0,0" VerticalAlignment="Top" />
+        <TextBox Name="SearchBox" HorizontalAlignment="Left" Margin="92,372,0,0" Text="" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" />
+        <Label Content="Enter Name" HorizontalAlignment="Left" Margin="15,368,0,0" VerticalAlignment="Top" />
+        <Button Content="Search" HorizontalAlignment="Left" Margin="230,371,0,0" VerticalAlignment="Top"
+                Click="Button_Click_1" />
+        <Button Name="Export" Content="Save Result" HorizontalAlignment="Left" Margin="662,369,0,0"
+                VerticalAlignment="Top" Height="40" Width="78" Click="Button_Click_2" Visibility="Hidden" />
+    </Grid>
+</Window>
