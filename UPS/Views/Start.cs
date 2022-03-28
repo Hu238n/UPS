@@ -48,7 +48,8 @@ namespace UPS.Views
             })).Result;
             if (serviceResponse.Error)
                 MessageBox.Show($"Error {serviceResponse.ServiceMessage}");
-            MessageBox.Show("The record has been updated");
+            else
+                MessageBox.Show("The record has been updated");
         
     }
 
@@ -63,6 +64,26 @@ namespace UPS.Views
         }
         Label.Content = user.Id;
         LoadData();
+    }
+    private void ExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (!(EmployeeDG.SelectedItem is User user))
+            return;
+        var serviceResponse =Task.Run(()=> _userService.GetById(user.Id)).Result;
+        if (serviceResponse.Error)
+        {
+            MessageBox.Show("Bad Request");
+        }
+       
+        var dialog = new SaveFileDialog
+        {
+            Filter = "CSV file (*.csv)|*.csv",
+            FileName = "result"
+        };
+        var csv = string.Format("{0},{1},{2},{3},{4}", serviceResponse.Data.Id, serviceResponse.Data.Name, serviceResponse.Data.Email,
+            serviceResponse.Data.Status, serviceResponse.Data.Gender);
+        if (dialog.ShowDialog() == true) File.WriteAllText(dialog.FileName, csv);
+            LoadData();
     }
 
     private async void Button_Click_1(object sender, RoutedEventArgs e)

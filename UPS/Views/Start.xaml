@@ -39,6 +39,19 @@
                                 Content="Delete" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+                <DataGridTemplateColumn Header="Export">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                x:Name="btnDelete"
+                                Width="75"
+                                Height="Auto"
+                                Margin="10"
+                                Click="ExportButton_Click"
+                                Content="Export" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
