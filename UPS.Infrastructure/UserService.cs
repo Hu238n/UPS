@@ -130,7 +130,11 @@ namespace UPS.Infrastructure
                 if (response.StatusCode != HttpStatusCode.OK)
                     return new ServiceResponse<bool>("Bad request", true);
                 var res = JsonConvert.DeserializeObject<Root<User>>(await response.Content.ReadAsStringAsync());
-                return CheckCode(res);
+                if (res.Code == 200)
+                {
+                    return new ServiceResponse<bool>(true, null);
+                }
+                return new ServiceResponse<bool>("Bad request", true);
 
             }
             catch (Exception e)
@@ -163,17 +167,6 @@ namespace UPS.Infrastructure
             }
 
         }
-
-        private static ServiceResponse<bool> CheckCode(Root<User>? res)
-        {
-            if (res.Code == 200)
-            {
-                return new ServiceResponse<bool>(true, res.Meta);
-            }
-
-            return new ServiceResponse<bool>("Bad request", true);
-        }
-
         private StringContent JsonContent(object obj) => new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
     }
